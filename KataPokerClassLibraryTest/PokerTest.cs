@@ -14,8 +14,15 @@ namespace KataPokerClassLibraryTest
     [Test]
     public void ListCardNullReturnException()
     {
-      var poker = new Poker();
-      var exception = Assert.Throws<ArgumentException>(() => poker.HandVerifier(null));
+      var exception = Assert.Throws<ArgumentException>(() => new Poker().HandVerifier(null));
+      Assert.That(exception, Has.Message.EqualTo("numero de cartas invalido"));
+    }
+
+    [Test]
+    public void ListCardDistinctFiveReturnException()
+    {
+      var listCard = new List<Card>();
+      var exception = Assert.Throws<ArgumentException>(() => new Poker().HandVerifier(listCard));
       Assert.That(exception, Has.Message.EqualTo("numero de cartas invalido"));
     }
 
