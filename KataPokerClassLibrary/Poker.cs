@@ -37,7 +37,7 @@ namespace KataPokerClassLibrary
       if (IsEscalera(listCard) && listCard.Any(x => x.Number == CardNumber.Ace))
         return Result.EscaleraReal;
 
-      if (IsEscalera(listCard))
+      if (IsEscalera(listCard) && listCard.Distinct(new CardsEqualsColor()).Count()==1)
         return Result.EscaleraColor;
 
       if (listCard.Distinct(new CardsEqualsNumber()).Count() == 2)
@@ -45,7 +45,10 @@ namespace KataPokerClassLibrary
 
       if (listCard.Distinct(new CardsEqualsColor()).Count() == 1)
         return Result.Color;
-      
+
+      if (IsEscalera(listCard))
+        return Result.Escalera;
+
       return Result.Nada;
     }
 
