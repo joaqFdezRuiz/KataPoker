@@ -117,6 +117,7 @@ namespace KataPokerClassLibraryTest
       listCard.Add(new Card(CardNumber.Six, CardColor.Spades));
       Assert.AreEqual(Poker.Result.Escalera, poker.HandVerifier(listCard));
     }
+    
     [Test]
     public void ResultTrio()
     {
@@ -130,6 +131,18 @@ namespace KataPokerClassLibraryTest
       Assert.AreEqual(Poker.Result.Trio, poker.HandVerifier(listCard));
     }
 
+    [Test]
+    public void ResultDoblesParejas()
+    {
+      var poker = new Poker();
+      var listCard = new List<Card>();
+      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.K, CardColor.Diamonds));
+      listCard.Add(new Card(CardNumber.J, CardColor.Spades));
+      listCard.Add(new Card(CardNumber.Five, CardColor.Hearts));
+      listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
+      Assert.AreEqual(Poker.Result.DoblesParejas, poker.HandVerifier(listCard));
+    }
   }
 
   

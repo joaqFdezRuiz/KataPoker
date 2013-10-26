@@ -50,7 +50,7 @@ namespace KataPokerClassLibrary
         return Result.Escalera;
 
       if (listCard.Distinct(new CardsEqualsNumber()).Count() == 3)
-        return Result.Trio;
+        return MaxCardsEqualsNumber(listCard, 2) ? Result.DoblesParejas : Result.Trio;
       
         
 
