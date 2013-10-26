@@ -6,7 +6,7 @@ namespace KataPokerClassLibrary
 {
   public class Poker
   {
-    public const int NumeroCartasMano = 5;
+    private const int NumeroCartasMano = 5;
     public enum Result { EscaleraReal, EscaleraColor, Poker, Full, Color, Escalera, Trio, DoblesParejas, Pareja, Nada };
     
     public Result HandVerifier(List<Card> listCard)
@@ -38,18 +38,12 @@ namespace KataPokerClassLibrary
       if (listCard.Distinct(new CardsEqualsNumber()).Count() == 3)
         return MaxCardsEqualsNumber(listCard, 2) ? Result.DoblesParejas : Result.Trio;
 
-      if (listCard.Distinct(new CardsEqualsNumber()).Count() == 4)
-        return Result.Pareja;
-
-      return Result.Nada;
+      return listCard.Distinct(new CardsEqualsNumber()).Count() == 4 ? Result.Pareja : Result.Nada;
     }
 
     private static bool MaxCardsEqualsNumber(IEnumerable<Card> listCard, int maxCont)
     {
-      return listCard
-          .GroupBy(x => new { numero = x.Number })
-          .Select(y => new { numero = y.Key.numero, cont = y.Count() })
-          .Max(z => z.cont) == maxCont;
+      return listCard.GroupBy(x => new { number = x.Number }).Select(y => new { number = y.Key.number, cont = y.Count() }).Max(z => z.cont) == maxCont;
     }
 
     private static bool IsEscalera(IEnumerable<Card> listCard)
@@ -65,6 +59,4 @@ namespace KataPokerClassLibrary
       return true;
     }
   }
-
-  
 }

@@ -44,12 +44,14 @@ namespace KataPokerClassLibraryTest
     public void ResultEscaleraReal()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Ace, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Three, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Four, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Clover));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Ace, CardColor.Clover),
+          new Card(CardNumber.Two, CardColor.Clover),
+          new Card(CardNumber.Three, CardColor.Clover),
+          new Card(CardNumber.Four, CardColor.Clover),
+          new Card(CardNumber.Five, CardColor.Clover)
+        };
       Assert.AreEqual(Poker.Result.EscaleraReal , poker.HandVerifier(listCard));
     }
 
@@ -57,12 +59,14 @@ namespace KataPokerClassLibraryTest
     public void ResultEscaleraColor()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Three, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Four, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Clover));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Two, CardColor.Clover),
+          new Card(CardNumber.Three, CardColor.Clover),
+          new Card(CardNumber.Four, CardColor.Clover),
+          new Card(CardNumber.Five, CardColor.Clover),
+          new Card(CardNumber.Six, CardColor.Clover)
+        };
       Assert.AreEqual(Poker.Result.EscaleraColor, poker.HandVerifier(listCard));
     }
 
@@ -70,12 +74,14 @@ namespace KataPokerClassLibraryTest
     public void ResultPoker()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Clover));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Two, CardColor.Clover),
+          new Card(CardNumber.Two, CardColor.Diamonds),
+          new Card(CardNumber.Two, CardColor.Hearts),
+          new Card(CardNumber.Two, CardColor.Spades),
+          new Card(CardNumber.Six, CardColor.Clover)
+        };
       Assert.AreEqual(Poker.Result.Poker, poker.HandVerifier(listCard));
     }
 
@@ -83,12 +89,14 @@ namespace KataPokerClassLibraryTest
     public void ResultFull()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.Two, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Clover));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Two, CardColor.Clover),
+          new Card(CardNumber.Two, CardColor.Diamonds),
+          new Card(CardNumber.Two, CardColor.Hearts),
+          new Card(CardNumber.Six, CardColor.Spades),
+          new Card(CardNumber.Six, CardColor.Clover)
+        };
       Assert.AreEqual(Poker.Result.Full, poker.HandVerifier(listCard));
     }
 
@@ -96,12 +104,14 @@ namespace KataPokerClassLibraryTest
     public void ResultColor()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Two, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Nine, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.K, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.J, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Seven, CardColor.Hearts));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Two, CardColor.Hearts),
+          new Card(CardNumber.Nine, CardColor.Hearts),
+          new Card(CardNumber.K, CardColor.Hearts),
+          new Card(CardNumber.J, CardColor.Hearts),
+          new Card(CardNumber.Seven, CardColor.Hearts)
+        };
       Assert.AreEqual(Poker.Result.Color, poker.HandVerifier(listCard));
     }
 
@@ -109,12 +119,14 @@ namespace KataPokerClassLibraryTest
     public void ResultEscalera()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Three, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.Four, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Spades));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Two, CardColor.Clover),
+          new Card(CardNumber.Three, CardColor.Diamonds),
+          new Card(CardNumber.Four, CardColor.Clover),
+          new Card(CardNumber.Five, CardColor.Hearts),
+          new Card(CardNumber.Six, CardColor.Spades)
+        };
       Assert.AreEqual(Poker.Result.Escalera, poker.HandVerifier(listCard));
     }
     
@@ -122,12 +134,14 @@ namespace KataPokerClassLibraryTest
     public void ResultTrio()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.K, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.K, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Six, CardColor.Spades));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.K, CardColor.Clover),
+          new Card(CardNumber.K, CardColor.Diamonds),
+          new Card(CardNumber.K, CardColor.Spades),
+          new Card(CardNumber.Five, CardColor.Hearts),
+          new Card(CardNumber.Six, CardColor.Spades)
+        };
       Assert.AreEqual(Poker.Result.Trio, poker.HandVerifier(listCard));
     }
 
@@ -135,12 +149,14 @@ namespace KataPokerClassLibraryTest
     public void ResultDoblesParejas()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.K, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.J, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.K, CardColor.Clover),
+          new Card(CardNumber.K, CardColor.Diamonds),
+          new Card(CardNumber.J, CardColor.Spades),
+          new Card(CardNumber.Five, CardColor.Hearts),
+          new Card(CardNumber.Five, CardColor.Spades)
+        };
       Assert.AreEqual(Poker.Result.DoblesParejas, poker.HandVerifier(listCard));
     }
 
@@ -148,12 +164,14 @@ namespace KataPokerClassLibraryTest
     public void ResultPareja()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.K, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.J, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Four, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.K, CardColor.Clover),
+          new Card(CardNumber.K, CardColor.Diamonds),
+          new Card(CardNumber.J, CardColor.Spades),
+          new Card(CardNumber.Four, CardColor.Hearts),
+          new Card(CardNumber.Five, CardColor.Spades)
+        };
       Assert.AreEqual(Poker.Result.Pareja, poker.HandVerifier(listCard));
     }
 
@@ -161,12 +179,14 @@ namespace KataPokerClassLibraryTest
     public void ResultNada()
     {
       var poker = new Poker();
-      var listCard = new List<Card>();
-      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
-      listCard.Add(new Card(CardNumber.Ace, CardColor.Diamonds));
-      listCard.Add(new Card(CardNumber.J, CardColor.Spades));
-      listCard.Add(new Card(CardNumber.Four, CardColor.Hearts));
-      listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.K, CardColor.Clover),
+          new Card(CardNumber.Ace, CardColor.Diamonds),
+          new Card(CardNumber.J, CardColor.Spades),
+          new Card(CardNumber.Four, CardColor.Hearts),
+          new Card(CardNumber.Five, CardColor.Spades)
+        };
       Assert.AreEqual(Poker.Result.Nada, poker.HandVerifier(listCard));
     }
   }
