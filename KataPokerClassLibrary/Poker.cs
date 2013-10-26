@@ -40,6 +40,8 @@ namespace KataPokerClassLibrary
       if (IsEscalera(listCard))
         return Result.EscaleraColor;
 
+      if(listCard.Distinct(new CardsEqualsNumber()).Count() == 2)
+        return Result.Poker;
 
       return Result.Nada;
     }
@@ -104,7 +106,9 @@ namespace KataPokerClassLibrary
       get { return _cardColor; }
     }
 
+#pragma warning disable 659
     public override bool Equals(object obj)
+#pragma warning restore 659
     {
       if (obj == null || GetType() != obj.GetType())
         return false;
@@ -113,6 +117,32 @@ namespace KataPokerClassLibrary
         return true;
       else
         return false;
+    }
+  }
+
+  internal class CardsEquals : IEqualityComparer<Card>
+  {
+    public bool Equals(Card x, Card y)
+    {
+      return (x.Number == y.Number && x.Color == y.Color);
+    }
+
+    public int GetHashCode(Card obj)
+    {
+      return obj.GetHashCode();
+    }
+  }
+
+  internal class CardsEqualsNumber:IEqualityComparer<Card>
+  {
+    public bool Equals(Card x, Card y)
+    {
+      return x.Number == y.Number;
+    }
+
+    public int GetHashCode(Card obj)
+    {
+      return obj.Number.GetHashCode();
     }
   }
 }
