@@ -29,16 +29,34 @@ namespace KataPokerClassLibraryTest
     }
 
     [Test]
-    public void ListWithTwoCardsEqualsReturnException()
+    public void ListWithFiveCardsButTwoOrMoreCardsEqualsReturnException()
     {
       var poker = new Poker();
       var listCard = new List<Card>
         {
           new Card(CardNumber.Ace, CardColor.Diamonds),
+          new Card(CardNumber.Ace, CardColor.Diamonds),
+          new Card(CardNumber.Ace, CardColor.Diamonds),
+          new Card(CardNumber.Ace, CardColor.Diamonds),
           new Card(CardNumber.Ace, CardColor.Diamonds)
         };
       var exception = Assert.Throws<ArgumentException>(() => poker.HandVerifier(listCard));
-      Assert.That(exception, Has.Message.EqualTo("dos cartas iguales"));
+      Assert.That(exception, Has.Message.EqualTo("dos o más cartas iguales"));
+    }
+
+    [Test]
+    public void ListWithFiveDiferentsCard()
+    {
+      var poker = new Poker();
+      var listCard = new List<Card>
+        {
+          new Card(CardNumber.Ace, CardColor.Diamonds),
+          new Card(CardNumber.Eight, CardColor.Spades),
+          new Card(CardNumber.Five, CardColor.Hearts),
+          new Card(CardNumber.Four, CardColor.Diamonds),
+          new Card(CardNumber.J, CardColor.Clover)
+        };
+      Assert.AreEqual("mano valida", poker.HandVerifier(listCard));
     }
 
   }

@@ -8,14 +8,17 @@ namespace KataPokerClassLibrary
 {
   public class Poker
   {
-    public void HandVerifier(List<Card> listCard)
+    public string HandVerifier(List<Card> listCard)
     {
       if(listCard==null)
         throw new ArgumentException("lista de cartas null");
+
       if (listCard.Count() != 5)
         throw new ArgumentException("numero de cartas incorrecto");
-      
 
+      if (listCard.Select(card => listCard.Count(x => Equals(x, card))).Any(countOfCards => countOfCards > 1))
+        throw new ArgumentException("dos o más cartas iguales");  
+      return "mano valida";
     }
   }
 
@@ -54,8 +57,26 @@ namespace KataPokerClassLibrary
       this._cardNumber = cardNumber;
       this._cardColor = cardColor;
     }
-    public CardNumber Number { get; set; }
-    public CardColor Color { get; set; }
 
+    public CardNumber Number
+    {
+      get { return _cardNumber; }
+    }
+
+    public CardColor Color
+    {
+      get { return _cardColor; }
+    }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null || GetType() != obj.GetType())
+        return false;
+      var cardToCompare = (Card) obj;
+      if (cardToCompare.Number == this.Number && cardToCompare.Color == this.Color)
+        return true;
+      else
+        return false;
+    }
   }
 }
