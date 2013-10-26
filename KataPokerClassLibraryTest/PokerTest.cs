@@ -53,6 +53,19 @@ namespace KataPokerClassLibraryTest
       Assert.AreEqual(Poker.Result.EscaleraReal , poker.HandVerifier(listCard));
     }
 
+    [Test]
+    public void EscaleraColor()
+    {
+      var poker = new Poker();
+      var listCard = new List<Card>();
+      listCard.Add(new Card(CardNumber.Two, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.Three, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.Four, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.Five, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.Six, CardColor.Clover));
+      Assert.AreEqual(Poker.Result.EscaleraColor, poker.HandVerifier(listCard));
+    }
+
   }
 
   

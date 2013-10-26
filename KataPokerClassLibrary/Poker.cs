@@ -34,15 +34,17 @@ namespace KataPokerClassLibrary
       if (listCard.Select(card => listCard.Count(x => Equals(x, card))).Any(countOfCards => countOfCards > 1))
         throw new ArgumentException("dos o más cartas iguales");
 
-      if (IsEscaleraReal(listCard))
-      {
+      if (IsEscalera(listCard) && listCard.Any(x => x.Number == CardNumber.Ace))
         return Result.EscaleraReal;
-      }
+
+      if (IsEscalera(listCard))
+        return Result.EscaleraColor;
+
 
       return Result.Nada;
     }
 
-    private static bool IsEscaleraReal(IEnumerable<Card> listCard)
+    private static bool IsEscalera(IEnumerable<Card> listCard)
     {
       var valueBeforeCard = 0;
       foreach (var card in listCard.OrderBy(x => x.Number))
@@ -52,7 +54,7 @@ namespace KataPokerClassLibrary
         else
           return false;
       }
-      return listCard.Any(x=>x.Number== CardNumber.Ace);
+      return true;
     }
   }
 
