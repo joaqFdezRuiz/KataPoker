@@ -51,8 +51,9 @@ namespace KataPokerClassLibrary
 
       if (listCard.Distinct(new CardsEqualsNumber()).Count() == 3)
         return MaxCardsEqualsNumber(listCard, 2) ? Result.DoblesParejas : Result.Trio;
-      
-        
+
+      if (listCard.Distinct(new CardsEqualsNumber()).Count() == 4)
+        return Result.Pareja;
 
       return Result.Nada;
     }

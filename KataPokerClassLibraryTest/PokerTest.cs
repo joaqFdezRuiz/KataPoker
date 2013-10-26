@@ -143,6 +143,20 @@ namespace KataPokerClassLibraryTest
       listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
       Assert.AreEqual(Poker.Result.DoblesParejas, poker.HandVerifier(listCard));
     }
+
+
+    [Test]
+    public void ResultPareja()
+    {
+      var poker = new Poker();
+      var listCard = new List<Card>();
+      listCard.Add(new Card(CardNumber.K, CardColor.Clover));
+      listCard.Add(new Card(CardNumber.K, CardColor.Diamonds));
+      listCard.Add(new Card(CardNumber.J, CardColor.Spades));
+      listCard.Add(new Card(CardNumber.Four, CardColor.Hearts));
+      listCard.Add(new Card(CardNumber.Five, CardColor.Spades));
+      Assert.AreEqual(Poker.Result.Pareja, poker.HandVerifier(listCard));
+    }
   }
 
   
