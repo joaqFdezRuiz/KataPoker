@@ -40,10 +40,19 @@ namespace KataPokerClassLibrary
       if (IsEscalera(listCard))
         return Result.EscaleraColor;
 
-      if(listCard.Distinct(new CardsEqualsNumber()).Count() == 2)
-        return Result.Poker;
-
+      if (listCard.Distinct(new CardsEqualsNumber()).Count() == 2)
+        return MaxCardsEqualsNumber(listCard, 3) ? Result.Full : Result.Poker;
+      
+      
       return Result.Nada;
+    }
+
+    private static bool MaxCardsEqualsNumber(IEnumerable<Card> listCard, int maxCont)
+    {
+      return listCard
+          .GroupBy(x => new { numero = x.Number })
+          .Select(y => new { numero = y.Key.numero, cont = y.Count() })
+          .Max(z => z.cont) == maxCont;
     }
 
     private static bool IsEscalera(IEnumerable<Card> listCard)
