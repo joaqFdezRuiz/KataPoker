@@ -49,6 +49,11 @@ namespace KataPokerClassLibrary
       if (IsEscalera(listCard))
         return Result.Escalera;
 
+      if (listCard.Distinct(new CardsEqualsNumber()).Count() == 3)
+        return Result.Trio;
+      
+        
+
       return Result.Nada;
     }
 
