@@ -1,24 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KataPokerClassLibrary
 {
+  
   public class Poker
   {
-    public string HandVerifier(List<Card> listCard)
+    public enum Result
+    {
+      EscaleraReal,
+      EscaleraColor,
+      Poker,
+      Full,
+      Color,
+      Escalera,
+      Trio,
+      DoblesParejas,
+      Pareja,
+      Nada
+    };
+
+    public const int NumeroCartasMano = 5;
+
+    public Result HandVerifier(List<Card> listCard)
     {
       if(listCard==null)
         throw new ArgumentException("lista de cartas null");
 
-      if (listCard.Count() != 5)
+      if (listCard.Count() != NumeroCartasMano)
         throw new ArgumentException("numero de cartas incorrecto");
 
       if (listCard.Select(card => listCard.Count(x => Equals(x, card))).Any(countOfCards => countOfCards > 1))
-        throw new ArgumentException("dos o más cartas iguales");  
-      return "mano valida";
+        throw new ArgumentException("dos o más cartas iguales");
+
+      if (IsEscaleraReal(listCard))
+      {
+        return Result.EscaleraReal;
+      }
+
+      return Result.Nada;
+    }
+
+    private static bool IsEscaleraReal(IEnumerable<Card> listCard)
+    {
+      var valueBeforeCard = 0;
+      foreach (var card in listCard.OrderBy(x => x.Number))
+      {
+        if (valueBeforeCard == 0 || valueBeforeCard == ((int) card.Number - 1))
+          valueBeforeCard = (int) card.Number;
+        else
+          return false;
+      }
+      return listCard.Any(x=>x.Number== CardNumber.Ace);
     }
   }
 
