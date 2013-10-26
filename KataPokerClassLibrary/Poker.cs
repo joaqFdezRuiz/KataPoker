@@ -42,7 +42,9 @@ namespace KataPokerClassLibrary
 
       if (listCard.Distinct(new CardsEqualsNumber()).Count() == 2)
         return MaxCardsEqualsNumber(listCard, 3) ? Result.Full : Result.Poker;
-      
+
+      if (listCard.Distinct(new CardsEqualsColor()).Count() == 1)
+        return Result.Color;
       
       return Result.Nada;
     }
@@ -129,19 +131,6 @@ namespace KataPokerClassLibrary
     }
   }
 
-  internal class CardsEquals : IEqualityComparer<Card>
-  {
-    public bool Equals(Card x, Card y)
-    {
-      return (x.Number == y.Number && x.Color == y.Color);
-    }
-
-    public int GetHashCode(Card obj)
-    {
-      return obj.GetHashCode();
-    }
-  }
-
   internal class CardsEqualsNumber:IEqualityComparer<Card>
   {
     public bool Equals(Card x, Card y)
@@ -152,6 +141,19 @@ namespace KataPokerClassLibrary
     public int GetHashCode(Card obj)
     {
       return obj.Number.GetHashCode();
+    }
+  }
+
+  internal class CardsEqualsColor:IEqualityComparer<Card>
+  {
+    public bool Equals(Card x, Card y)
+    {
+      return x.Color == y.Color;
+    }
+
+    public int GetHashCode(Card obj)
+    {
+      return obj.Color.GetHashCode();
     }
   }
 }
